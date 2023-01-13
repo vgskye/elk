@@ -57,6 +57,8 @@
     "next": "Next",
     "prev": "Prev",
     "publish": "Publish",
+    "quote": "Quote",
+    "react": "React",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",

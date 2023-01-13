@@ -25,6 +25,9 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
+    <blockquote v-if="status.quote && !isFiltered && status.sensitive && !status.spoilerText">
+      <StatusBody :status="status.quote" />
+    </blockquote>
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
       <template v-if="filterPhrase" #spoiler>
@@ -33,6 +36,9 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
       <template v-else-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>
+      <blockquote v-if="status.quote && (!status.sensitive || status.spoilerText)">
+        <StatusBody :status="status.quote" />
+      </blockquote>
       <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia

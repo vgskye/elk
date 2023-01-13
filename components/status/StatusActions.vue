@@ -30,6 +30,14 @@ const reply = () => {
   else
     navigateToStatus({ status, focusReply: true })
 }
+
+const quote = () => {
+  // TODO: implement this
+}
+
+const react = () => {
+  // TODO: implement this
+}
 </script>
 
 <template>
@@ -75,6 +83,16 @@ const reply = () => {
 
     <div flex-1>
       <StatusActionButton
+        :content="$t('action.quote')"
+        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+        icon="i-ri:double-quotes-r"
+        :command="command"
+        @click="quote"
+      />
+    </div>
+
+    <div flex-1>
+      <StatusActionButton
         :content="$t('action.favourite')"
         :text="!getWellnessSetting(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
@@ -92,6 +110,16 @@ const reply = () => {
           />
         </template>
       </StatusActionButton>
+    </div>
+
+    <div flex-1>
+      <StatusActionButton
+        :content="$t('action.react')"
+        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+        icon="i-ri:add-line"
+        :command="command"
+        @click="react"
+      />
     </div>
 
     <div flex-none>
